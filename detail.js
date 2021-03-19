@@ -7,18 +7,24 @@ window.onload = async () => {
   let id = urlParams.get("id");
   console.log(id);
 
+  let category = urlParams.get("category")
+
   // document.getElementById("loadingSpinner").classList.toggle("d-none");
 
   try {
-    let response = await fetch(url + id,{ method: "GET",
+    let response = await fetch(url + category,{ method: "GET",
     // body: JSON.stringify(myEvent),
     headers: new Headers( {
       "Content-Type": "application/json",
       "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDUxZWJkYjg5YzI2ZjAwMTU3ZjljMjkiLCJpYXQiOjE2MTYxNjU4MjgsImV4cCI6MTYxNzM3NTQyOH0.Yt9PO5T_X6GToRS1yhZJ3obOIAgpQ7RDARmW28W1MMU"
       }),
   }); // "https://striveschool-api.herokuapp.com/api/agenda/6051e84789c26f00157f9c27"
-    let data = await response.json();
-    console.log("SINGLE EVENT", data);
+    let categoryMovies = await response.json();
+    console.log("SINGLE EVENT", categoryMovies);
+
+    const data = categoryMovies.find( movie => movie._id === id)
+
+    if (!data) throw new Error("ID not valid")
     // use the data for creating some <p> into the detail section of the page
     let p = document.createElement("div");
     p.innerHTML = `<div class="justify-content-center">
@@ -44,7 +50,7 @@ const handleDelete = async () => {
   let urlParams = new URLSearchParams(window.location.search);
   let id = urlParams.get("id");
   try {
-    let response = await fetch(url + id, { method: "DELETE",
+    let response = await fetch(url+id, { method: "DELETE",
     // body: JSON.stringify(myEvent),
     headers: new Headers( {
       "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDUxZWJkYjg5YzI2ZjAwMTU3ZjljMjkiLCJpYXQiOjE2MTYxNjU4MjgsImV4cCI6MTYxNzM3NTQyOH0.Yt9PO5T_X6GToRS1yhZJ3obOIAgpQ7RDARmW28W1MMU"

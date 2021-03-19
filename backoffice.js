@@ -6,9 +6,10 @@ window.onload = async () => {
   console.log("page has been rendered");
   let urlParams = new URLSearchParams(window.location.search);
   id = urlParams.get("id");
+  let category = urlParams.get("category")
   console.log("ID IS", id);
   if (id) {
-    let response = await fetch(url + id, {
+    let response = await fetch(url + category, {
       method: "GET",
       headers: new Headers({
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDUxZWJkYjg5YzI2ZjAwMTU3ZjljMjkiLCJpYXQiOjE2MTYxNjU4MjgsImV4cCI6MTYxNzM3NTQyOH0.Yt9PO5T_X6GToRS1yhZJ3obOIAgpQ7RDARmW28W1MMU",
@@ -21,12 +22,12 @@ window.onload = async () => {
     document.getElementById("productname").value = eventDetails.name;
     document.getElementById("brandDescription").value =
       eventDetails.description;
-    document.getElementById("imgURL").value = eventDetails.price
-    document.getElementById("cataegory").value = eventDetails.cataegory
+    document.getElementById("category").value = eventDetails.category
+    document.getElementById("imgURL").value = eventDetails.imageUrl
 
 
   } else {
-    document.getElementById("subTitle").innerText = "CREATE EVENT";
+    
   }
 
 }
@@ -70,7 +71,7 @@ const handleSubmit = async (e) => {
 
     if (response.ok) {
       // probably everything went well
-      alert(`Event was ${id ? "edited" : "created"} successfully!`);
+      alert(`Movie was ${id ? "edited" : "created"} successfully!`);
       window.location.assign("index.html")
     } else {
       alert("something went wrong :(");

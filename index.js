@@ -66,7 +66,7 @@ window.onload = async () => {
                                 <h5 class="card-title">${event.name}</h5>
                                  <p class="card-text">${event.description}</p>
                                 <a href="#" class="">${event.category}</a><br>
-                                <span><a class="btn btn-info" href="./detail.html?id=${event._id}">Edit/Delete</a></span>
+                                <span><a class="btn btn-info" href="./detail.html?id=${event._id}&category=${event.category}">Edit/Delete</a></span>
                                 </div>
                                 </div>
                                 `
@@ -107,7 +107,7 @@ window.onload = async () => {
                                 <h5 class="card-title">${event.name}</h5>
                                  <p class="card-text">${event.description}</p>
                                 <a href="#" class="">${event.category}</a><br>
-                                <span><a class="btn btn-info" href="./detail.html?id=${event._id}">Edit/Delete</a></span>
+                                <span><a class="btn btn-info" href="./detail.html?id=${event._id}&category=${event.category}">Edit/Delete</a></span>
                                 </div>
                                 </div>
                                 `
